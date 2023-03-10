@@ -1,0 +1,84 @@
+<body>
+
+
+    <div class="main">
+        <a href="#" routerLink="/AddTicket" class="btn btn-success">Add Ticket</a>
+        <h1><span class="v">V</span>os tickets:</h1>
+        <div class="tickets" [formGroup]="filterByDate">
+            <div class="">
+                <input type="date" name="firstdate" (change)="testTheChange($event)" formControlName="startDate" />
+            </div>
+            <table class="table table-warning table-hover">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>datedachat</th>
+                        <th>EmployeeId</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ticket of tickets">
+                        <td>{{ ticket.type }}</td>
+                        <td>{{ DateFormat(ticket.dateAchat)}}</td>
+                        <td>{{ticket.employee.firstName}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <input type="date" name="lastdate" (change)="testTheChange($event)" formControlName="endDate" />
+            <div class="container">
+                <div class="row mt-4 mb-2 text-center">
+                    <div class="col">
+                        <button type="button" (click)="openFormModal()" class="btn btn-success">
+                      Add
+                    </button>
+                    </div>
+                </div>
+            </div>
+
+            <!--form modal-->
+            <div class="modal fade " id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add New Ticket</h5>
+                        </div>
+                        <div class="ticket">
+                            <span class="title">ticket d'ouvrier</span>
+                            <span class="price">prix : 0.800</span>
+                            <button type="button" class="btn">Ajouter</button>
+
+                        </div>
+                        <div class="ticket">
+                            <span class="title">ticket d'employees</span>
+                            <span class="price">prix : 0.800</span>
+                            <button type="button" class="btn">Ajouter</button>
+                        </div>
+                        <div class="ticket">
+                            <span class="title">ticket de cadre</span>
+                            <span class="price">prix : 0.800</span>
+                            <button type="button" class="btn">Ajouter</button>
+                        </div>
+                        <div class="ticket">
+                            <span class="title">ticket d'invites</span>
+                            <span class="price">prix : 0.800</span>
+                            <button class="btn">Ajouter</button>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">
+                        Close
+                      </button>
+                            <button type="button" class="btn btn-primary" (click)="save()">
+                        Save changes
+                      </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="logo">
+        <img src="assets/Teskerti__1_-removebg-preview.png">
+    </div>
+</body>
